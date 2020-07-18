@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    // for all repos
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    // for go
+    "golang.Go",
+    "hbenl.vscode-test-explorer",
+    "ethan-reesor.vscode-go-test-adapter"
+  ]
+}
