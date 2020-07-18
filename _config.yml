@@ -1,4 +1,5 @@
 destination: VS Code debug specs - Go
+title: VS Code debug specs - Go
 theme: jekyll-theme-cayman
 gems:
   - jekyll-readme-index

@@ -1,4 +1,4 @@
-# How to Debug Golang with VSCode
+# How to Debug Golang with VS Code
 
 ## Summary
 
