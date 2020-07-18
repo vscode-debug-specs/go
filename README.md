@@ -1,9 +1,3 @@
----
-layout: default
-title: How to Debug Golang with VSCode
-permalink: /
----
-
 # How to Debug Golang with VSCode
 
 ## Summary
