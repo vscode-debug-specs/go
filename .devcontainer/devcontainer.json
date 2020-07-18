@@ -1,5 +1,5 @@
 {
-  "name": "Go",
+  "name": "vscode-debug-specs-go",
   "dockerFile": "Dockerfile",
   // set workspace mount path
   "workspaceMount": "source=${localWorkspaceFolder},target=/go/src/github.com/vscode-debug-specs/go,type=bind,consistency=delegated",
