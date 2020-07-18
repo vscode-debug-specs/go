@@ -1,69 +1,66 @@
 ---
 layout: default
 title: How to Debug Golang with VSCode
-permalink : /golang/
+permalink: /
 ---
+
 # How to Debug Golang with VSCode
 
 ## Summary
 
-* [Basic](#basic)
-* [Spec](#spec)
-* [Instruction](#instruction)
-* [debugging unit test](#debugging-unit)
-* [debugging executable file](#debugging-executable-file)
-* [debugging remote process](#debugging-remote-debug)
-* [debugging running process](#debugging-running-process)
+- [Basic](#basic)
+- [Spec](#spec)
+- [Instruction](#instruction)
+- [debugging unit test](#debugging-unit)
+- [debugging executable file](#debugging-executable-file)
+- [debugging remote process](#debugging-remote-debug)
+- [debugging running process](#debugging-running-process)
 
 ## Basic
 
-* [The Go Programming Language](https://golang.org/)
-* Extension: [Go](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go)
-* Debugger: [delve](https://github.com/derekparker/delve)
-* module code: [bubbleSort.go](https://github.com/74th/vscode-debug-specs/blob/master/golang/bubbleSort.go)
+- [The Go Programming Language](https://golang.org/)
+- Extension: [Go](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go)
+- Debugger: [delve](https://github.com/derekparker/delve)
+- module code: [bubbleSort.go](https://github.com/74th/vscode-debug-specs/blob/master/golang/bubbleSort.go)
 
 ## Spec
 
-* OS
-	* ✅ MacOS
-	* ✅ Windows
-	* ✅ Linux
-* Break Point
-	* ✅ break point
-	* ✅ condition break point
-	* ❌ function breakpoint
-* Step Execution
-	* ✅ Step Over
-	* ✅ Step Into
-	* ✅ Step Out
-	* ✅ Continue
-* Variables
-	* ✅ variables views
-	* ✅ watch variables
-* Call Stack
-	* ✅ call stack
-* Evaluation
-	* ✅ eval expression to show variables
-	* ❌ eval expression to change variables
-* Type of Execution
-	* ✅ debug unit test
-	* ✅ debug executable package
-	* ✅ remote debugging
+- OS
+  _ ✅ MacOS
+  _ ✅ Windows \* ✅ Linux
+- Break Point
+  _ ✅ break point
+  _ ✅ condition break point \* ❌ function breakpoint
+- Step Execution
+  _ ✅ Step Over
+  _ ✅ Step Into
+  _ ✅ Step Out
+  _ ✅ Continue
+- Variables
+  _ ✅ variables views
+  _ ✅ watch variables
+- Call Stack \* ✅ call stack
+- Evaluation
+  _ ✅ eval expression to show variables
+  _ ❌ eval expression to change variables
+- Type of Execution
+  _ ✅ debug unit test
+  _ ✅ debug executable package \* ✅ remote debugging
 
 ## Instruction
 
-* note: [Delve official instraction](https://github.com/derekparker/delve/tree/master/Documentation/installation)
+- note: [Delve official instraction](https://github.com/derekparker/delve/tree/master/Documentation/installation)
 
 ### MacOS
 
 1. install golang : `brew install golang`
 1. add go/bin to PATH
-2. install xcode : `xcode-select --install`
-2. install Delve : `go get github.com/derekparker/delve`
-3. [install extension "Go"](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go)
-4. install other tools: `F1`->`Go: Install/Update Tools`
+1. install xcode : `xcode-select --install`
+1. install Delve : `go get github.com/derekparker/delve`
+1. [install extension "Go"](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go)
+1. install other tools: `F1`->`Go: Install/Update Tools`
 
-* note: when I used `brew install delve`, unit test inline executions did not work in my machine.
+- note: when I used `brew install delve`, unit test inline executions did not work in my machine.
 
 ### Windows
 
@@ -114,7 +111,7 @@ menu:`Go: Launch test function`
 }
 ```
 
-* `program` must be package folder
+- `program` must be package folder
 
 ## debugging executable file
 
@@ -139,7 +136,7 @@ menu:`Go: Launch package`
 }
 ```
 
-* `program` must be main package folder or *.go file
+- `program` must be main package folder or \*.go file
 
 ## debugging at remote machine
 
@@ -156,24 +153,24 @@ dlv debug --headless --listen=0.0.0.0:2345 --log
 
 ```json
 {
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"name": "Launch Remote",
-			"type": "go",
-			"request": "launch",
-			"mode": "remote",
-			// remotePath must be remote package path
-			"remotePath": "/home/nnyn/go/src/github.com/74th/vscode-debug-specs/golang/bubblesorter/cmd/bubblesorter",
-			"port": 2345,
-			"host": "192.168.56.101",
-			// program must be remote package path
-			"program": "${workspaceRoot}/bubblesorter/cmd/bubblesorter",
-			"env": {},
-			"args": [],
-			"showLog": true
-		}
-	]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Remote",
+      "type": "go",
+      "request": "launch",
+      "mode": "remote",
+      // remotePath must be remote package path
+      "remotePath": "/home/nnyn/go/src/github.com/74th/vscode-debug-specs/golang/bubblesorter/cmd/bubblesorter",
+      "port": 2345,
+      "host": "192.168.56.101",
+      // program must be remote package path
+      "program": "${workspaceRoot}/bubblesorter/cmd/bubblesorter",
+      "env": {},
+      "args": [],
+      "showLog": true
+    }
+  ]
 }
 ```
 
