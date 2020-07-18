@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/74th/vscode-debug-specs/golang/bubblesorter"
+	"github.com/vscode-debug-specs/go/bubblesorter"
 )
 
 func main() {
