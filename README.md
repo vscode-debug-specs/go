@@ -146,6 +146,9 @@ source: [bubblesorter/cmd/bubbleSorter/main.go](https://github.com/74th/vscode-d
 # build executable file
 cd bubblesorter/cmd/bubblesorter
 go build
+
+# enable ptrace scope (for Linux)
+echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
 ```
 
 ### start process
@@ -188,6 +191,9 @@ Add processId to launch.json.
 ```sh
 cd cmd/bubbleSorter/
 go build
+
+# enable ptrace scope (for Linux)
+echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
 ```
 
 ### execute and dlv attach
@@ -198,7 +204,7 @@ cd cmd/bubbleSorter/
 # runnning process
 ./bubbleSorter -sleep 30 &
 PID=$!
-dlv attach $PID ./bubbleSorter --headless --listen=0.0.0.0:2345 --log
+dlv attach $PID ./bubbleSorter --headless --listen=0.0.0.0:2345 --log --api-version 2
 ```
 
 ### edit launch.json
