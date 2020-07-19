@@ -6,6 +6,7 @@
       "type": "go",
       "request": "launch",
       "mode": "debug",
+      "apiVersion": 2,
       "program": "${workspaceRoot}/bubblesorter/cmd/bubblesorter",
       "args": ["4", "3", "2", "1"]
     },
@@ -18,16 +19,22 @@
       "args": ["-test.run", "TestBubbleSort"]
     },
     {
+      "name": "Attach local process",
+      "type": "go",
+      "request": "attach",
+      "mode": "local",
+      "processId": 1859211,
+      "apiVersion": 2,
+      "showLog": true
+    },
+    {
       "name": "Attach remote process",
       "type": "go",
-      "request": "launch",
+      "request": "attach",
       "mode": "remote",
-      "remotePath": "${workspaceFolder}/bubblesorter/cmd/bubblesorter",
       "port": 2345,
-      "host": "192.168.56.101",
-      "program": "${workspaceRoot}/bubblesorter/cmd/bubblesorter",
-      "env": {},
-      "args": [],
+      "host": "127.0.0.1",
+      "apiVersion": 2,
       "showLog": true
     }
   ]

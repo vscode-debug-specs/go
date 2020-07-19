@@ -20,55 +20,51 @@
 ## Spec
 
 - OS
-  _ ✅ MacOS
-  _ ✅ Windows \* ✅ Linux
+  - ✅ MacOS
+  - ✅ Windows
+  - ✅ Linux
 - Break Point
-  _ ✅ break point
-  _ ✅ condition break point \* ❌ function breakpoint
+  - ✅ break point
+  - ✅ condition break point
+  - ❌ function breakpoint
 - Step Execution
-  _ ✅ Step Over
-  _ ✅ Step Into
-  _ ✅ Step Out
-  _ ✅ Continue
+  - ✅ Step Over
+  - ✅ Step Into
+  - ✅ Step Out
+  - ✅ Continue
 - Variables
-  _ ✅ variables views
-  _ ✅ watch variables
-- Call Stack \* ✅ call stack
+  - ✅ variables views
+  - ✅ watch variables
+- Call Stack
+  - ✅ call stack
 - Evaluation
-  _ ✅ eval expression to show variables
-  _ ❌ eval expression to change variables
+  - ✅ eval expression to show variables
+  - ✅ eval expression to change variables
 - Type of Execution
-  _ ✅ debug unit test
-  _ ✅ debug executable package \* ✅ remote debugging
+  - ✅ debug unit test
+  - ✅ debug executable package
+  - ✅ remote debugging
 
 ## Instruction
 
-- note: [Delve official instraction](https://github.com/derekparker/delve/tree/master/Documentation/installation)
-
 ### MacOS
 
-1. install golang : `brew install golang`
+1. install go : `brew install golang`
 1. add go/bin to PATH
-1. install xcode : `xcode-select --install`
-1. install Delve : `go get github.com/derekparker/delve`
 1. [install extension "Go"](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go)
 1. install other tools: `F1`->`Go: Install/Update Tools`
 
-- note: when I used `brew install delve`, unit test inline executions did not work in my machine.
-
 ### Windows
 
-1. install golang and add go/bin to PATH
-2. install Delve: `go get github.com/derekparker/delve`
-3. [install extension "Go"](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go)
-4. install other tools: `F1`->`Go: Install/Update Tools`
+1. install go and add go/bin to PATH
+2. [install extension "Go"](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go)
+3. install other tools: `F1`->`Go: Install/Update Tools`
 
 ### Linux
 
-1. install golang and add go/bin to PATH
-2. install Delve: `go get github.com/derekparker/delve`
-3. [install extension "Go"](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go)
-4. install other tools: `F1`->`Go: Install/Update Tools`
+1. install go and add go/bin to PATH
+2. [install extension "Go"](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go)
+3. install other tools: `F1`->`Go: Install/Update Tools`
 
 ## unit test
 
@@ -82,30 +78,38 @@ source : [bubbleSort_test.go](https://github.com/74th/vscode-debug-specs/blob/ma
 
 menu:`Go: Launch test function`
 
-```
+```json
 {
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"name": "Launch test function",
-			"type": "go",
-			"request": "launch",
-			"mode": "test",
-			"program": "${workspaceRoot}",
-			"args": [
-				"-test.run",
-				// test function name
-				// * can use reguler expression
-				// * NOT include "Test"
-				// * the first charactor MUST be small
-				"bubblesort"
-			]
-		}
-	]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch test function",
+      "type": "go",
+      "request": "launch",
+      "mode": "test",
+      "program": "${workspaceRoot}",
+      "args": [
+        "-test.run",
+        // test function name
+        // * can use reguler expression
+        // * NOT include "Test"
+        // * the first charactor MUST be small
+        "bubblesort"
+      ]
+    }
+  ]
 }
 ```
 
 - `program` must be package folder
+
+### using Test Explorer
+
+install [Go Test Explorer](https://marketplace.visualstudio.com/items?itemName=ethan-reesor.vscode-go-test-adapter)
+
+```
+ext install ethan-reesor.vscode-go-test-adapter
+```
 
 ## debugging executable file
 
@@ -115,74 +119,110 @@ source: [bubblesorter/cmd/bubbleSorter/main.go](https://github.com/74th/vscode-d
 
 menu:`Go: Launch package`
 
-```
+```json
 {
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"name": "Launch Package",
-			"type": "go",
-			"request": "launch",
-			"mode": "debug",
-			"program": "${workspaceRoot}/bubblesorter/cmd/bubbleSorter"
-		}
-	]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Package",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceRoot}/bubblesorter/cmd/bubbleSorter"
+    }
+  ]
 }
 ```
 
 - `program` must be main package folder or \*.go file
 
-## debugging at remote machine
+## debugging at local process
 
 source: [bubblesorter/cmd/bubbleSorter/main.go](https://github.com/74th/vscode-debug-specs/blob/master/golang/bubblesorter/cmd/bubbleSorter/bubbleSorter.go)
 
 ### prepare
 
 ```sh
-cd bubblesorter/cmd/bubbleSorter/
-dlv debug --headless --listen=0.0.0.0:2345 --log
+# build executable file
+cd bubblesorter/cmd/bubblesorter
+go build
 ```
 
-### launch.json
+### start process
+
+```sh
+./bubblesorter -sleep 30 7 4 2 6 &
+
+[1] 1859211
+```
+
+### edit launch.json
+
+Add processId to launch.json.
 
 ```json
 {
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Remote",
+      "name": "Attach local process",
       "type": "go",
-      "request": "launch",
-      "mode": "remote",
-      // remotePath must be remote package path
-      "remotePath": "/home/nnyn/go/src/github.com/74th/vscode-debug-specs/golang/bubblesorter/cmd/bubblesorter",
-      "port": 2345,
-      "host": "192.168.56.101",
-      // program must be remote package path
-      "program": "${workspaceRoot}/bubblesorter/cmd/bubblesorter",
-      "env": {},
-      "args": [],
+      "request": "attach",
+      "mode": "local",
+      "processId": 1859211,
+      "apiVersion": 2,
       "showLog": true
     }
   ]
 }
 ```
 
+### start debugging
+
+▶︎ Attach local process
+
 ## debugging running remote process
 
-For comfortable debugging it is necessary to build avoiding the optimization option.
+### prepare
 
 ```sh
 cd cmd/bubbleSorter/
-go build -gcflags '-N -l'
+go build
 ```
 
+### execute and dlv attach
+
 ```sh
 cd cmd/bubbleSorter/
+
 # runnning process
 ./bubbleSorter -sleep 30 &
 PID=$!
 dlv attach $PID ./bubbleSorter --headless --listen=0.0.0.0:2345 --log
 ```
 
-launch.json is same settings as remote debug;
+### edit launch.json
+
+Edit host to remote server address.
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach remote process",
+      "type": "go",
+      "request": "attach",
+      "mode": "remote",
+      "port": 2345,
+      "host": "127.0.0.1",
+      "apiVersion": 2,
+      "showLog": true
+    }
+  ]
+}
+```
+
+### start debugging
+
+▶︎ Attach remote process
