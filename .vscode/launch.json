@@ -7,7 +7,7 @@
       "request": "launch",
       "mode": "debug",
       "apiVersion": 2,
-      "program": "${workspaceRoot}/bubblesorter/cmd/bubblesorter",
+      "program": "${workspaceFolder}/bubblesorter/cmd/bubblesorter",
       "args": ["4", "3", "2", "1"]
     },
     {
@@ -15,7 +15,7 @@
       "type": "go",
       "request": "launch",
       "mode": "test",
-      "program": "${workspaceRoot}/bubblesorter",
+      "program": "${workspaceFoler}/bubblesorter",
       "args": ["-test.run", "TestBubbleSort"]
     },
     {

@@ -87,7 +87,7 @@ menu:`Go: Launch test function`
       "type": "go",
       "request": "launch",
       "mode": "test",
-      "program": "${workspaceRoot}",
+      "program": "${workspaceFolder}",
       "args": [
         "-test.run",
         // test function name
@@ -128,13 +128,17 @@ menu:`Go: Launch package`
       "type": "go",
       "request": "launch",
       "mode": "debug",
-      "program": "${workspaceRoot}/bubblesorter/cmd/bubbleSorter"
+      "program": "${workspaceFolder}/bubblesorter/cmd/bubbleSorter"
     }
   ]
 }
 ```
 
 - `program` must be main package folder or \*.go file
+
+### start debugging
+
+▶︎ Launch Package
 
 ## debugging at local process
 
