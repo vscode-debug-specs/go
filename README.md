@@ -7,8 +7,8 @@
 - [Instruction](#instruction)
 - [debugging unit test](#debugging-unit)
 - [debugging executable file](#debugging-executable-file)
-- [debugging remote process](#debugging-remote-debug)
-- [debugging running process](#debugging-running-process)
+- [debugging local process](#debugging-local-process)
+- [debugging running remote process](#debugging-running-remote-process)
 
 ## Basic
 
@@ -140,7 +140,7 @@ menu:`Go: Launch package`
 
 ▶︎ Launch Package
 
-## debugging at local process
+## debugging local process
 
 source: [bubblesorter/cmd/bubbleSorter/main.go](https://github.com/74th/vscode-debug-specs/blob/master/golang/bubblesorter/cmd/bubbleSorter/bubbleSorter.go)
 
