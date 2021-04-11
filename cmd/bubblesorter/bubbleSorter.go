@@ -2,37 +2,22 @@ package main
 
 import (
 	"flag"
-	"fmt"
-	"os"
-	"strconv"
-	"time"
+	"log"
+	"net"
 
-	"github.com/vscode-debug-specs/go/bubblesorter"
+	"github.com/vscode-debug-specs/go/gateway/grpc"
 )
 
 func main() {
-	var sleepSec int
-	flag.IntVar(&sleepSec, "sleep", 0, "sleep second")
-	flag.Parse()
-	time.Sleep(time.Duration(sleepSec) * time.Second)
-
-	if flag.NArg() == 0 {
-		fmt.Printf("bubbleSorter 3 2 1 ...")
-		os.Exit(1)
+	var host string
+	flag.StringVar(&host, "host", "0.0.0.0:8080", "host:port")
+	listener, err := net.Listen("tcp", host)
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
 	}
-
-	in := []int{}
-	for _, arg := range flag.Args() {
-		n, err := strconv.Atoi(arg)
-		if err != nil {
-			fmt.Printf("parse error %s", arg)
-			os.Exit(1)
-		}
-		in = append(in, n)
+	sv := grpc.New()
+	err = sv.Serve(listener)
+	if err != nil {
+		log.Fatalf("failed to start server: %v", err)
 	}
-	out := bubblesorter.BubbleSort(in)
-	for _, n := range out {
-		fmt.Printf("%d ", n)
-	}
-	fmt.Println()
 }
