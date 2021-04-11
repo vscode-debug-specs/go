@@ -1,5 +1,4 @@
 syntax = "proto3";
-option go_package = "github.com/vscode-debug-specs/go";
 package sorter;
 
 message IntItem {
