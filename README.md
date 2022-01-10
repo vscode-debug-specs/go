@@ -19,6 +19,8 @@
 
 ## Spec
 
+See [the extension's documentation](https://github.com/golang/vscode-go/blob/master/docs/debugging.md) for supported debug features.
+
 - OS
   - ✅ MacOS
   - ✅ Windows
@@ -26,7 +28,8 @@
 - Break Point
   - ✅ break point
   - ✅ condition break point
-  - ❌ function breakpoint
+  - ✅ function breakpoint
+  - ✅ log point
 - Step Execution
   - ✅ Step Over
   - ✅ Step Into
@@ -103,13 +106,6 @@ menu:`Go: Launch test function`
 
 - `program` must be package folder
 
-### using Test Explorer
-
-install [Go Test Explorer](https://marketplace.visualstudio.com/items?itemName=ethan-reesor.vscode-go-test-adapter)
-
-```
-ext install ethan-reesor.vscode-go-test-adapter
-```
 
 ## debugging executable file
 
@@ -226,7 +222,6 @@ Edit host to remote server address.
       "mode": "remote",
       "port": 2345,
       "host": "127.0.0.1",
-      "apiVersion": 2,
       "showLog": true
     }
   ]
