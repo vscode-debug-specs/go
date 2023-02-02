@@ -15,7 +15,7 @@
 - [The Go Programming Language](https://golang.org/)
 - Extension: [Go](https://marketplace.visualstudio.com/items?itemName=golang.Go)
 - Debugger: [delve](https://github.com/derekparker/delve)
-- module code: [bubbleSort.go](https://github.com/vscode-debug-specs/go/blob/master/bubblesorter/bubbleSort.go)
+- module code: [bubbleSort.go](https://github.com/vscode-debug-specs/go/blob/main/domain/bubblesort/bubbleSort.go)
 
 ## Spec
 
@@ -68,7 +68,7 @@
 
 ## unit test
 
-source : [bubbleSort_test.go](https://github.com/vscode-debug-specs/go/blob/master/bubblesorter/bubbleSort_test.go)
+source : [bubbleSort_test.go](https://github.com/vscode-debug-specs/go/blob/main/domain/bubblesort/bubbleSort_test.go)
 
 ### inline
 
@@ -113,7 +113,7 @@ ext install ethan-reesor.vscode-go-test-adapter
 
 ## debugging executable file
 
-source: [bubblesorter/cmd/bubblesorter/bubbleSorter.go](https://github.com/vscode-debug-specs/go/blob/master/bubblesorter/cmd/bubblesorter/bubbleSorter.go)
+source: [cmd/bubblesorter/bubbleSorter.go](https://github.com/vscode-debug-specs/go/blob/main/cmd/bubblesorter/bubbleSorter.go)
 
 ### launch.json
 
@@ -142,7 +142,7 @@ menu:`Go: Launch package`
 
 ## debugging local process
 
-source: [bubblesorter/cmd/bubblesorter/bubbleSorter.go](https://github.com/vscode-debug-specs/go/blob/master/bubblesorter/cmd/bubblesorter/bubbleSorter.go)
+source: [cmd/bubblesorter/bubbleSorter.go](https://github.com/vscode-debug-specs/go/blob/main/cmd/bubblesorter/bubbleSorter.go)
 
 ### prepare
 
